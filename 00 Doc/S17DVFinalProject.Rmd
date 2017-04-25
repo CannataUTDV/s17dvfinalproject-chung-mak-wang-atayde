@@ -1,0 +1,52 @@
+---
+title: "S17 DV Final Project"
+output:
+  html_document:
+    toc: yes
+  html_notebook:
+    toc: yes
+authors: Christian Atayde, Jennifer Chung, Ryan Mak, Vivian Wang
+---
+
+#**Introduction**
+For this project, we will be using two different data sets.
+The first dataset (which will be our main dataset) is Income.csv. Here we are comparing the states in the US through their household and income. In this csv, there are two dimensions and four measures. The dimensions include the State and AreaName; for example, State is AL and the AreaName is Alabama. The measures are Household, income from 50,000 to 124,999, 125,000 to 149,999, and 200,000 or more.
+The second dataset is Poverty.csv. Here, we are comparing the states in the US through poverty by population and gender. In this csv, there are two dimensions and three measures. Similar to Income.csv, the dimensions include the State and AreaName; for example, State is AL and the AreaName is Alabama. The measures include Total Number of People, the Number of Males, and the Number of Females who are in poverty.
+In these two datasets, we will be comparing income with poverty, and try to find a correlation between the two datasets. Whether income affects poverty or the other way around.
+
+To download the data needed for this project:
+
+1. Click or copy/paste this link to your web browser https://data.world/jenniferchung/s-17-dv-final-project
+2. Download the files "Income.csv" and "Poverty.csv".
+
+#**R Configuration**
+Below we display our sessionInfo(). 
+
+```{r}
+sessionInfo(package=NULL)
+```
+
+#**ETL**
+
+Here we have the ETL code to clean our datasets. If the ETL does not work, it is probably due to using the "cleaned up" ETL data, rather than the Pre ETL data. Also, before running it, please change the file path of the ETL._.R files to the location of where the csvs are.
+
+```{r}
+source("../01 Data/ETL.Income.R")
+```
+
+```{r}
+source("../01 Data/ETL.Poverty.R")
+```
+
+#**Shiny**
+
+This is the link to the Shiny Apps that was published for our project: 
+
+```{r}
+source("../02 Shiny/server.R")
+source("../02 Shiny/ui.R")
+```
+
+
+
+#**The Data**
