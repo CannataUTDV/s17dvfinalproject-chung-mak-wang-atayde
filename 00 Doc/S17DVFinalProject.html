@@ -166,7 +166,7 @@ $(document).ready(function () {
 <div id="etl" class="section level1">
 <h1><strong>ETL</strong></h1>
 <p>Here we have the ETL code to clean our datasets.</p>
-<pre class="r"><code>source(&quot;../01 Data/ETL.OIS_Dataset_2006-15_-_Incidents.R&quot;)</code></pre>
+<pre class="r"><code>source(&quot;../01 Data/ETL.OIS_Dataset_Incidents.R&quot;)</code></pre>
 <pre><code>## Loading required package: readr</code></pre>
 <pre><code>## Warning: package 'readr' was built under R version 3.3.3</code></pre>
 <pre><code>## Loading required package: plyr</code></pre>
@@ -178,7 +178,7 @@ $(document).ready(function () {
 ##   Time = col_character(),
 ##   Day_Part = col_character(),
 ##   Premise_Category = col_character(),
-##   `Inside/Outside` = col_character(),
+##   Inside_or_Outside = col_character(),
 ##   Subject_Weapon = col_character(),
 ##   Number_of_Officer_Shooters = col_integer(),
 ##   Call_Type_Categories = col_character(),
@@ -228,7 +228,7 @@ $(document).ready(function () {
 ##  $ Time                               : Factor w/ 52 levels &quot;0;13&quot;,&quot;0;19&quot;,..: 42 13 18 27 25 1 35 22 6 5 ...
 ##  $ Day_Part                           : Factor w/ 6 levels &quot;day&quot;,&quot;Day&quot;,&quot;Evening&quot;,..: 4 3 3 3 3 5 5 5 4 4 ...
 ##  $ Premise_Category                   : Factor w/ 8 levels &quot;Business&quot;,&quot;Park&quot;,..: 1 7 8 8 3 3 8 6 8 8 ...
-##  $ Inside/Outside                     : Factor w/ 3 levels &quot;Inside&quot;,&quot;Inside / Outside&quot;,..: 1 3 3 1 3 3 3 3 3 3 ...
+##  $ Inside_or_Outside                  : Factor w/ 3 levels &quot;Inside&quot;,&quot;Inside / Outside&quot;,..: 1 3 3 1 3 3 3 3 3 3 ...
 ##  $ Subject_Weapon                     : Factor w/ 9 levels &quot;air pistol (BB gun)&quot;,..: 8 5 4 2 2 9 2 8 8 2 ...
 ##  $ Number_of_Officer_Shooters         : num  1 1 1 2 1 1 1 1 1 2 ...
 ##  $ Call_Type_Categories               : Factor w/ 14 levels &quot;armed subject&quot;,..: 9 7 13 3 11 2 9 9 9 4 ...
@@ -249,7 +249,7 @@ $(document).ready(function () {
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
 ##   .. ..$ Premise_Category                   : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
-##   .. ..$ Inside/Outside                     : list()
+##   .. ..$ Inside_or_Outside                  : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
 ##   .. ..$ Subject_Weapon                     : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
@@ -266,14 +266,14 @@ $(document).ready(function () {
 ##   ..$ default: list()
 ##   .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_guess&quot; &quot;collector&quot;
 ##   ..- attr(*, &quot;class&quot;)= chr &quot;col_spec&quot;</code></pre>
-<pre class="r"><code>source(&quot;../01 Data/ETL.OIS_Dataset_2006-15_-_Officers.R&quot;)</code></pre>
+<pre class="r"><code>source(&quot;../01 Data/ETL.OIS_Dataset_Officers.R&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Case_Number = col_character(),
 ##   Date = col_character(),
 ##   Officer_Name = col_character(),
 ##   Rank = col_character(),
-##   `Officer_Race/Ethnicity` = col_character(),
+##   Officer_Race_Ethnicity = col_character(),
 ##   Officer_Gender = col_character(),
 ##   Officer_Age = col_integer(),
 ##   PD_Jurisdiction = col_character(),
@@ -334,7 +334,7 @@ $(document).ready(function () {
 ##  $ Date                            : Factor w/ 51 levels &quot;1/1/2006&quot;,&quot;1/14/2013&quot;,..: 43 42 32 46 11 50 29 12 12 43 ...
 ##  $ Officer_Name                    : Factor w/ 69 levels &quot;Agt. Joe Cronin (TABC)&quot;,..: 16 8 27 2 42 29 4 65 32 61 ...
 ##  $ Rank                            : Factor w/ 7 levels &quot;cpl&quot;,&quot;det&quot;,&quot;ofc&quot;,..: 3 2 3 4 3 3 1 3 3 3 ...
-##  $ Officer_Race/Ethnicity          : Factor w/ 4 levels &quot;Asian&quot;,&quot;Black&quot;,..: 3 4 4 4 3 4 4 4 4 4 ...
+##  $ Officer_Race_Ethnicity          : Factor w/ 4 levels &quot;Asian&quot;,&quot;Black&quot;,..: 3 4 4 4 3 4 4 4 4 4 ...
 ##  $ Officer_Gender                  : Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ Officer_Age                     : num  36 49 36 36 34 36 40 25 30 24 ...
 ##  $ PD_Jurisdiction                 : Factor w/ 5 levels &quot;APD&quot;,&quot;Park Police&quot;,..: 1 1 1 3 1 1 1 1 1 1 ...
@@ -355,7 +355,7 @@ $(document).ready(function () {
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
 ##   .. ..$ Rank                            : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
-##   .. ..$ Officer_Race/Ethnicity          : list()
+##   .. ..$ Officer_Race_Ethnicity          : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
 ##   .. ..$ Officer_Gender                  : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
@@ -380,12 +380,12 @@ $(document).ready(function () {
 ##   ..$ default: list()
 ##   .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_guess&quot; &quot;collector&quot;
 ##   ..- attr(*, &quot;class&quot;)= chr &quot;col_spec&quot;</code></pre>
-<pre class="r"><code>source(&quot;../01 Data/ETL.OIS_Dataset_2006-15_-_Subjects.R&quot;)</code></pre>
+<pre class="r"><code>source(&quot;../01 Data/ETL.OIS_Dataset_Subjects.R&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Case_Number = col_character(),
 ##   Date = col_character(),
-##   `Subject_Race/Ethnicity` = col_character(),
+##   Subject_Race_Ethnicity = col_character(),
 ##   Subject_Gender = col_character(),
 ##   Subject_Age = col_integer(),
 ##   Subject_Injuries = col_character(),
@@ -415,7 +415,7 @@ $(document).ready(function () {
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    54 obs. of  8 variables:
 ##  $ Case_Number                : Factor w/ 52 levels &quot;06-0011398&quot;,&quot;06-0151964&quot;,..: 51 38 30 11 23 52 9 1 46 5 ...
 ##  $ Date                       : Factor w/ 51 levels &quot;1/1/2006&quot;,&quot;1/14/2013&quot;,..: 43 42 32 10 20 41 44 1 4 28 ...
-##  $ Subject_Race/Ethnicity     : Factor w/ 4 levels &quot;Asian&quot;,&quot;Black&quot;,..: 4 2 2 3 4 4 3 3 4 3 ...
+##  $ Subject_Race_Ethnicity     : Factor w/ 4 levels &quot;Asian&quot;,&quot;Black&quot;,..: 4 2 2 3 4 4 3 3 4 3 ...
 ##  $ Subject_Gender             : Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ Subject_Age                : Factor w/ 33 levels &quot;16&quot;,&quot;18&quot;,&quot;20&quot;,..: 16 14 16 33 9 31 13 21 30 26 ...
 ##  $ Subject_Injuries           : Factor w/ 5 levels &quot;injured&quot;,&quot;killed&quot;,..: 2 2 2 5 5 2 5 2 2 5 ...
@@ -427,7 +427,7 @@ $(document).ready(function () {
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
 ##   .. ..$ Date                       : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
-##   .. ..$ Subject_Race/Ethnicity     : list()
+##   .. ..$ Subject_Race_Ethnicity     : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;
 ##   .. ..$ Subject_Gender             : list()
 ##   .. .. ..- attr(*, &quot;class&quot;)= chr  &quot;collector_character&quot; &quot;collector&quot;

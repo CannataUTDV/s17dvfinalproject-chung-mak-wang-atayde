@@ -2,12 +2,12 @@ require(readr)
 require(plyr)
 
 # Set the Working Directory to the 00 Doc folder
-# Change file_path to where your PreETL.OIS_Dataset_2006-15_-_Subjects.csv file is located.
-file_path = "../../../CSVs/PreETL.OIS_Dataset_2006-15_-_Subjects.csv"
+# Change file_path to where your PreETL.OIS_Dataset_Officers.csv file is located.
+file_path = "../../../CSVs/PreETL.OIS_Dataset_Officers.csv"
 df <- readr::read_csv(file_path)
 names(df)
 
-measures <- c("Subject_Age")
+measures <- c("Officer_Age", "Years_LE_Experience", "Number_of_Shots_Fired_by_Officer")
 
 dimensions <- setdiff(names(df), measures)
 dimensions
