@@ -2,12 +2,12 @@ require(readr)
 require(plyr)
 
 # Set the Working Directory to the 00 Doc folder
-# Change file_path to where your PreETL.Poverty.csv file is located.
-file_path = "../../../CSVs/PreETL.Poverty.csv"
+# Change file_path to where your PreETL.OIS_Dataset_2006-15_-_Incidents.csv file is located.
+file_path = "../../../CSVs/PreETL.OIS_Dataset_2006-15_-_Incidents.csv"
 df <- readr::read_csv(file_path)
 names(df)
 
-measures <- c("TotalNumberofPeople", "NumberofMales", "NumberofFemales")
+measures <- c("Number_of_Officer_Shooters", "Number_of_Officers_When_Shots_Fired", "Number_of_Hits")
 
 dimensions <- setdiff(names(df), measures)
 dimensions

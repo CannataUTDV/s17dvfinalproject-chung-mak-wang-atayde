@@ -2,12 +2,12 @@ require(readr)
 require(plyr)
 
 # Set the Working Directory to the 00 Doc folder
-# Change file_path to where your PreETL.tints.csv file is located.
-file_path = "../../../CSVs/PreETL.Income.csv"
+# Change file_path to where your PreETL.Officer_Involved_Shooting_2000-2014.csv file is located.
+file_path = "../../../CSVs/PreETL.Officer_Involved_Shooting_2000-2014.csv"
 df <- readr::read_csv(file_path)
 names(df)
 
-measures <- c("HouseholdIncome", "$50,000to$59,999", "$125,000to$149,999", "$200,000ormore")
+measures <- c("Subject_Age", "Number_of_Officers_When_Shots_Fired", "Number_of_Officers_Shooters", "Officer_Age", "Years_LE_Experience", "Number_of_Shots_Fired_by_Officer", "Number_of_Hits")
 
 dimensions <- setdiff(names(df), measures)
 dimensions
