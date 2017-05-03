@@ -31,15 +31,15 @@ sessionInfo(package=NULL)
 
 Here we have the ETL code to clean our datasets.
 
-```{r}
+```{r}'
 source("../01 Data/ETL.OIS_Dataset_Incidents.R")
 ```
 
-```{r}
+```{r}'
 source("../01 Data/ETL.OIS_Dataset_Officers.R")
 ```
 
-```{r}
+```{r}'
 source("../01 Data/ETL.OIS_Dataset_Subjects.R")
 ```
 
@@ -48,26 +48,34 @@ source("../01 Data/ETL.OIS_Dataset_Subjects.R")
 This is the link to the Shiny Apps that was published for our project:
 https://jenniferchung.shinyapps.io/finalproject/
 
-```{r}'
+```{r}
+require(ggplot2)
+require(dplyr)
+require(shiny)
+require(shinydashboard)
 require(data.world)
+require(readr)
+require(DT)
+require(leaflet)
+require(plotly)
 data.world(propsfile = "www/.data.world")
 source("../02 Shiny/server.R")
 source("../02 Shiny/ui.R")
 ```
 
-![ ]](../02 Shiny/Boxplot.png)
+![ ](../02 Shiny/Boxplot.png)
 
 
-![ ]](../02 Shiny/Histogram.png)
+![ ](../02 Shiny/Histogram.png)
 
 
-![ ]](../02 Shiny/Scatterplot.png)
+![ ](../02 Shiny/Scatterplot.png)
 
 
-![ ]](../02 Shiny/Crosstab.png)
+![ ](../02 Shiny/Crosstab.png)
 
 
-![ ]](../02 Shiny/Barchart.png)
+![ ](../02 Shiny/Barchart.png)
 
 
 #**The Data**
@@ -78,7 +86,7 @@ source("../02 Shiny/ui.R")
 ![ ](../03 Visualization/Histogram.png)
 
 
-![ ](../03 Visualization/Scatterplot.png)
+![ ](../03 Visualization/Scatter Plot.png)
 
 
 ![ ](../03 Visualization/Crosstab.png)
