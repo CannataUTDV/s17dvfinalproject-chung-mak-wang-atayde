@@ -9,17 +9,16 @@ authors: Christian Atayde, Jennifer Chung, Ryan Mak, Vivian Wang
 ---
 
 #**Introduction**
-For this project, we will be using two different data sets.
-The first dataset (which will be our main dataset) is
-The second dataset is 
-In these two datasets, we will be comparing 
+For this project, we will be using three different data sets.
+The first dataset is "OIS_Dataset_Incidents.csv". 
+The second dataset is "OIS_Dataset_Officers".
+The third dataset is "OIS_Dataset_Subjects.csv".
 
 To download the data needed for this project:
 
 1. Click or copy/paste this link to your web browser https://data.world/ryanmak/s-17-dv-final-project
-2. Download the files "" and "".
+2. Download the files "OIS_Dataset_Incidents.csv", "OIS_Dataset_Officers", and "OIS_Dataset_Subjects.csv".
 
-The website we got our datasets was 
 
 #**R Configuration**
 Below we display our sessionInfo(). 
@@ -46,12 +45,43 @@ source("../01 Data/ETL.OIS_Dataset_Subjects.R")
 
 #**Shiny**
 
-This is the link to the Shiny Apps that was published for our project: 
+This is the link to the Shiny Apps that was published for our project:
+https://jenniferchung.shinyapps.io/finalproject/
 
 ```{r}'
+require(data.world)
+data.world(propsfile = "www/.data.world")
 source("../02 Shiny/server.R")
 source("../02 Shiny/ui.R")
 ```
 
+![ ]](../02 Shiny/Boxplot.png)
+
+
+![ ]](../02 Shiny/Histogram.png)
+
+
+![ ]](../02 Shiny/Scatterplot.png)
+
+
+![ ]](../02 Shiny/Crosstab.png)
+
+
+![ ]](../02 Shiny/Barchart.png)
+
 
 #**The Data**
+
+![ ](../03 Visualization/Box Plot.png)
+
+
+![ ](../03 Visualization/Histogram.png)
+
+
+![ ](../03 Visualization/Scatterplot.png)
+
+
+![ ](../03 Visualization/Crosstab.png)
+
+
+![ ](../03 Visualization/Barchart.png)

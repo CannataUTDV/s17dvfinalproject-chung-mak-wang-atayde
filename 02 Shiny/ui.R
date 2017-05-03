@@ -95,7 +95,7 @@ dashboardPage(
                          hr(), 
                          DT::dataTableOutput("barchartData1")
                 ),
-                tabPanel("Barchart", plotOutput("barchartPlot1", height=1500))
+                tabPanel("Barchart", plotOutput("barchartPlot1", height=500))
               )
       )
       # End Barchart tab content.

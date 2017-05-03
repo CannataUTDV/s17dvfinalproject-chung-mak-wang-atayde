@@ -1,0 +1,11 @@
+name: finalproject
+title: FinalProject
+account: jenniferchung
+server: shinyapps.io
+appId: 177425
+bundleId: 812927
+url: https://jenniferchung.shinyapps.io/finalproject/
+when: 1493788095.37515
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Barchart.png|Boxplot.png|Histogram.png|Scatterplot.png
