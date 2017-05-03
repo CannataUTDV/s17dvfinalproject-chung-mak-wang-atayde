@@ -9,11 +9,11 @@ dashboardPage(
   ),
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Box Plots", tabName = "boxplot", icon = icon("dashboard")),
-      menuItem("Histograms", tabName = "histogram", icon = icon("dashboard")),
-      menuItem("Scatter Plots", tabName = "scatter", icon = icon("dashboard")),
-      menuItem("Crosstabs, KPIs, Parameters", tabName = "crosstab", icon = icon("dashboard")),
-      menuItem("Barcharts, Table Calculations", tabName = "barchart", icon = icon("dashboard"))
+      menuItem("Box Plot", tabName = "boxplot", icon = icon("dashboard")),
+      menuItem("Histogram", tabName = "histogram", icon = icon("dashboard")),
+      menuItem("Scatter Plot", tabName = "scatter", icon = icon("dashboard")),
+      menuItem("Crosstab with KPI", tabName = "crosstab", icon = icon("dashboard")),
+      menuItem("Barchart", tabName = "barchart", icon = icon("dashboard"))
     )
   ),
   dashboardBody(
@@ -27,14 +27,12 @@ dashboardPage(
               tabsetPanel(
                 tabPanel("Data",  
                          radioButtons("rb5", "Get data from:",
-                                      c("SQL" = "SQL",
-                                        "CSV" = "CSV"), inline=T),
-                         uiOutput("boxplotRegions"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html,
+                                      c("SQL" = "SQL"), inline=T),
+                         uiOutput("boxplotDays"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html,
                          actionButton(inputId = "click5",  label = "To get data, click here"),
-                         hr(), # Add space after button.
                          DT::dataTableOutput("boxplotData1")
                 ),
-                tabPanel("Simple Box Plot")
+                tabPanel("Box Plot", plotlyOutput("boxplotPlot1", height=1000))
               )
       ),
       # End Box Plots tab content.
@@ -43,13 +41,12 @@ dashboardPage(
               tabsetPanel(
                 tabPanel("Data",  
                          radioButtons("rb4", "Get data from:",
-                                      c("SQL" = "SQL",
-                                        "CSV" = "CSV"), inline=T),
+                                      c("SQL" = "SQL"), inline=T),
                          actionButton(inputId = "click4",  label = "To get data, click here"),
                          hr(), # Add space after button.
                          DT::dataTableOutput("histogramData1")
                 ),
-                tabPanel("Simple Histogram", plotlyOutput("histogramPlot1", height=1000))
+                tabPanel("Histogram", plotlyOutput("histogramPlot1", height=1000))
               )
       ),
       # End Histograms tab content.
@@ -58,14 +55,13 @@ dashboardPage(
               tabsetPanel(
                 tabPanel("Data",  
                          radioButtons("rb3", "Get data from:",
-                                      c("SQL" = "SQL",
-                                        "CSV" = "CSV"), inline=T),
+                                      c("SQL" = "SQL"), inline=T),
                          uiOutput("scatterStates"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html,
                          actionButton(inputId = "click3",  label = "To get data, click here"),
                          hr(), # Add space after button.
                          DT::dataTableOutput("scatterData1")
                 ),
-                tabPanel("Simple Scatter Plot", plotlyOutput("scatterPlot1", height=1000))
+                tabPanel("Scatter Plot", plotlyOutput("scatterPlot1", height=1000))
               )
       ),
       # End Scatter Plots tab content.
@@ -74,8 +70,7 @@ dashboardPage(
               tabsetPanel(
                 tabPanel("Data",  
                          radioButtons("rb1", "Get data from:",
-                                      c("SQL" = "SQL",
-                                        "CSV" = "CSV"), inline=T),
+                                      c("SQL" = "SQL"), inline=T),
                          sliderInput("KPI1", "KPI_Low:", 
                                      min = .5, max = 1,  value = .1),
                          sliderInput("KPI2", "KPI_Medium:", 
@@ -93,11 +88,10 @@ dashboardPage(
               tabsetPanel(
                 tabPanel("Data",  
                          radioButtons("rb2", "Get data from:",
-                                      c("SQL" = "SQL",
-                                        "CSV" = "CSV"), inline=T),
+                                      c("SQL" = "SQL"), inline=T),
                          uiOutput("regions2"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html
                          actionButton(inputId = "click2",  label = "To get data, click here"),
-                         'Here is data for the "Barchart with Table Calculation" tab', 
+                         'Here is data for the "Barchart" tab', 
                          hr(), 
                          DT::dataTableOutput("barchartData1")
                 ),
