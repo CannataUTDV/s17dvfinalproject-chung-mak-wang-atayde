@@ -364,7 +364,6 @@ shinyServer(function(input, output) {
       geom_tile(aes(x=Premise_Category, y=Subject_Weapon, fill=kpi), alpha=0.50)
     
   })
-})
   
   # # End Crosstab Tab ___________________________________________________________
   # # Begin Barchart Tab ------------------------------------------------------------------
@@ -376,35 +375,27 @@ shinyServer(function(input, output) {
       tdf = query( 
         data.world(propsfile = "www/.data.world"), 
         dataset="ryanmak/s-17-dv-final-project", type="sql", 
-        query="select Subject_Race_Ethnicity,Subject_Gender, Subject_Age 
+        query="select OIS_Dataset_Subjects.Subject_Age,
+        OIS_Dataset_Subjects.Subject_Race_Ethnicity,
+        OIS_Dataset_Subjects.Subject_Injuries, 
+        OIS_Dataset_Subjects.Subject_Drug_or_Alcohol_Use,
+        OIS_Dataset_Officers.Number_of_Shots_Fired_by_Officer
+        
         from OIS_Dataset_Subjects 
+        LEFT JOIN OIS_Dataset_Officers ON OIS_Dataset_Subjects.Case_Number=OIS_Dataset_Officers.Case_Number
         where ? = 'All' or Subject_Race_Ethnicity in (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
         queryParameters = area_list 
       ) # %>% View() 
-    } 
-    else { 
-      print("Getting from csv") 
-      file_path = "www/Incomes.csv" 
-      df <- readr::read_csv(file_path) 
-      tdf = df %>% dplyr::filter(AreaName %in% input$selectedAreas | input$selectedAreas == "All") %>% 
-        dplyr::group_by(AreaName) %>% 
-        dplyr::summarize(HouseholdIncome) # %>% View() 
-    } 
-    # The following two lines mimic what can be done with Analytic SQL. Analytic SQL does not currently work in data.world. 
-    tdf2 = tdf %>% group_by(Subject_Race_Ethnicity) %>% summarize(window_avg_income = mean(Subject_Age)) 
-    dplyr::inner_join(tdf, tdf2, by = "Subject_Race_Ethnicity") 
+    }
   }) 
   output$barchartData1 <- renderDataTable({DT::datatable(df2(), 
          rownames = FALSE, 
          extensions = list(Responsive = TRUE, FixedHeader = TRUE) ) 
   }) 
-  output$barchartPlot1 <- renderPlot({ggplot(df2(), aes(x=Subject_Race_Ethnicity, y=Subject_Age)) + 
+  output$barchartPlot1 <- renderPlot({ggplot(df2(), aes(x=Subject_Drug_or_Alcohol_Use, y=Number_of_Shots_Fired_by_Officer, color=Subject_Injuries, fill=Subject_Injuries)) + 
       scale_y_continuous(labels = scales::comma) + # no scientific notation   
-      coord_flip() + geom_bar(stat = "identity") + 
-      facet_wrap(~Subject_Gender, ncol = 1) + 
-      geom_hline(aes(yintercept = mean(Subject_Age), color="red")) + 
-      geom_text(aes(-1, mean(Subject_Age), label = mean(Subject_Age), vjust=-.5, hjust=-.25), color = "red") 
-}) 
-
+      geom_bar(stat = "identity")
+  }) 
+})
   # # End Barchart Tab ___________________________________________________________
   # 
