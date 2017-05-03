@@ -3,5 +3,5 @@ s17dvfinalproject-dvproject-chung-mak-wang-atayde created by GitHub Classroom
 
 Team Members: Ryan Mak, Jennifer Chung, Vivian Wang, and Christian Atayde
 
-### The Project Notebook is [here](S17DVFinalProject.nb). 
+### The Project Notebook is [here](S17DVFinalProject.nb.html). 
 ### GitHub repository is [here](https://github.com/CannataUTDV/s17dvfinalproject-chung-mak-wang-atayde).
