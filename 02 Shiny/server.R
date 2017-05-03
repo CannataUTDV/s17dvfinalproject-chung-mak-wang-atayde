@@ -11,6 +11,16 @@ require(lubridate)
 
 online0 = TRUE
 
+areas = query( 
+  data.world(propsfile = "www/.data.world"), 
+  dataset="ryanmak/s-17-dv-final-project", type="sql", 
+  query="select distinct Subject_Race_Ethnicity as D, Subject_Race_Ethnicity as R 
+  from OIS_Dataset_Subjects 
+  order by 1" 
+) # %>% View() 
+area_list <- as.list(areas$D, areas$R) 
+area_list <- append(list("All" = "All"), area_list) 
+
 # Server.R structure:
 #   Queries that don't need to be redone
 #   shinyServer
@@ -199,10 +209,10 @@ shinyServer(function(input, output) {
   KPI_Medium = reactive({input$KPI2})
   
   # These widgets are for the Barcharts tab.
-  online2 = reactive({input$rb2})
-  output$regions2 <- renderUI({selectInput("selectedRegions", "Choose Regions:", region_list, multiple = TRUE, selected='All') })
-  
-  # Begin Box Plot Tab ------------------------------------------------------------------
+  online2 = reactive({input$rb2}) 
+  output$regions2 <- renderUI({selectInput("selectedAreas", "Choose Race:", area_list, multiple = TRUE, selected='All') })   
+ 
+   # Begin Box Plot Tab ------------------------------------------------------------------
   # dfbp1 <- eventReactive(input$click5, {
   #   if(input$selectedBoxplotRegions == 'All') region_list5 <- input$selectedBoxplotRegions
   #   else region_list5 <- append(list("Skip" = "Skip"), input$selectedBoxplotRegions)
@@ -358,97 +368,43 @@ shinyServer(function(input, output) {
   
   # # End Crosstab Tab ___________________________________________________________
   # # Begin Barchart Tab ------------------------------------------------------------------
-  # dfbc1 <- eventReactive(input$click2, {
-  #   if(input$selectedRegions == 'All') region_list <- input$selectedRegions
-  #   else region_list <- append(list("Skip" = "Skip"), input$selectedRegions)
-  #   if(online2() == "SQL") {
-  #     print("Getting from data.world")
-  #     tdf = query(
-  #       data.world(propsfile = "www/.data.world"),
-  #       dataset="cannata/superstoreorders", type="sql",
-  #       query="select Category, Region, sum(Sales) sum_sales
-  #       from SuperStoreOrders
-  #       where ? = 'All' or Region in (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  #       group by Category, Region",
-  #       queryParameters = region_list
-  #     ) # %>% View()
-  #   }
-  #   else {
-  #     print("Getting from csv")
-  #     file_path = "www/SuperStoreOrders.csv"
-  #     df <- readr::read_csv(file_path)
-  #     tdf = df %>% dplyr::filter(Region %in% input$selectedRegions | input$selectedRegions == "All") %>%
-  #       dplyr::group_by(Category, Region) %>% 
-  #       dplyr::summarize(sum_sales = sum(Sales)) # %>% View()
-  #   }
-  #   # The following two lines mimic what can be done with Analytic SQL. Analytic SQL does not currently work in data.world.
-  #   tdf2 = tdf %>% group_by(Category) %>% summarize(window_avg_sales = mean(sum_sales))
-  #   dplyr::inner_join(tdf, tdf2, by = "Category")
-  #   # Analytic SQL would look something like this:
-  #   # select Category, Region, sum_sales, avg(sum_sales) 
-  #   # OVER (PARTITION BY Category ) as window_avg_sales
-  #   # from (select Category, Region, sum(Sales) sum_sales
-  #   #       from SuperStoreOrders
-  #   #      group by Category, Region)
-  # })
-  # output$barchartData1 <- renderDataTable({DT::datatable(dfbc1(),
-  #                                                        rownames = FALSE,
-  #                                                        extensions = list(Responsive = TRUE, FixedHeader = TRUE) )
-  # })
-  # output$barchartData2 <- renderDataTable({DT::datatable(discounts,
-  #                                                        rownames = FALSE,
-  #                                                        extensions = list(Responsive = TRUE, FixedHeader = TRUE) )
-  # })
-  # output$barchartData3 <- renderDataTable({DT::datatable(sales,
-  #                                                        rownames = FALSE,
-  #                                                        extensions = list(Responsive = TRUE, FixedHeader = TRUE) )
-  # })
-  # output$barchartPlot1 <- renderPlot({ggplot(dfbc1(), aes(x=Region, y=sum_sales)) +
-  #     scale_y_continuous(labels = scales::comma) + # no scientific notation
-  #     theme(axis.text.x=element_text(angle=0, size=12, vjust=0.5)) + 
-  #     theme(axis.text.y=element_text(size=12, hjust=0.5)) +
-  #     geom_bar(stat = "identity") + 
-  #     facet_wrap(~Category, ncol=1) + 
-  #     coord_flip() + 
-  #     # Add sum_sales, and (sum_sales - window_avg_sales) label.
-  #     geom_text(mapping=aes(x=Region, y=sum_sales, label=round(sum_sales)),colour="black", hjust=-.5) +
-  #     geom_text(mapping=aes(x=Region, y=sum_sales, label=round(sum_sales - window_avg_sales)),colour="blue", hjust=-2) +
-  #     # Add reference line with a label.
-  #     geom_hline(aes(yintercept = round(window_avg_sales)), color="red") +
-  #     geom_text(aes( -1, window_avg_sales, label = window_avg_sales, vjust = -.5, hjust = -.25), color="red")
-  # })
-  # 
-  # output$barchartMap1 <- renderLeaflet({leaflet(width = 400, height = 800) %>% 
-  #     setView(lng = -98.35, lat = 39.5, zoom = 4) %>% 
-  #     addTiles() %>% 
-  #     addProviderTiles("MapQuestOpen.Aerial") %>%
-  #     addMarkers(lng = discounts$Longitude,
-  #                lat = discounts$Latitude,
-  #                options = markerOptions(draggable = TRUE, riseOnHover = TRUE),
-  #                popup = as.character(paste(discounts$Customer_Name, 
-  #                                           ", ", discounts$City,
-  #                                           ", ", discounts$State,
-  #                                           " Sales: ","$", formatC(as.numeric(discounts$sumSales), format="f", digits=2, big.mark=","),
-  #                                           " Discount: ", ", ", discounts$sumDiscount)) )
-  # })
-  # 
-  # output$barchartPlot2 <- renderPlotly({
-  #   # The following ggplotly code doesn't work when sumProfit is negative.
-  #   p <- ggplot(sales, aes(x=as.character(Customer_Id), y=sumProfit)) +
-  #     theme(axis.text.x=element_text(angle=0, size=12, vjust=0.5)) + 
-  #     theme(axis.text.y=element_text(size=12, hjust=0.5)) +
-  #     geom_bar(stat = "identity")
-  #   ggplotly(p)
-  #   # So, using plot_ly instead.
-  #   plot_ly(
-  #     data = sales,
-  #     x = ~as.character(Customer_Id),
-  #     y = ~sumProfit,
-  #     type = "bar"
-  #   ) %>%
-  #     layout(
-  #       xaxis = list(type="category", categoryorder="category ascending")
-  #     )
-  # })
+  df2 <- eventReactive(input$click2, { 
+    if(input$selectedAreas == 'All') area_list <- input$selectedAreas 
+    else area_list <- append(list("Skip" = "Skip"), input$selectedAreas) 
+    if(online2() == "SQL") { 
+      print("Getting from data.world") 
+      tdf = query( 
+        data.world(propsfile = "www/.data.world"), 
+        dataset="ryanmak/s-17-dv-final-project", type="sql", 
+        query="select Subject_Race_Ethnicity,Subject_Gender, Subject_Age 
+        from OIS_Dataset_Subjects 
+        where ? = 'All' or Subject_Race_Ethnicity in (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+        queryParameters = area_list 
+      ) # %>% View() 
+    } 
+    else { 
+      print("Getting from csv") 
+      file_path = "www/Incomes.csv" 
+      df <- readr::read_csv(file_path) 
+      tdf = df %>% dplyr::filter(AreaName %in% input$selectedAreas | input$selectedAreas == "All") %>% 
+        dplyr::group_by(AreaName) %>% 
+        dplyr::summarize(HouseholdIncome) # %>% View() 
+    } 
+    # The following two lines mimic what can be done with Analytic SQL. Analytic SQL does not currently work in data.world. 
+    tdf2 = tdf %>% group_by(Subject_Race_Ethnicity) %>% summarize(window_avg_income = mean(Subject_Age)) 
+    dplyr::inner_join(tdf, tdf2, by = "Subject_Race_Ethnicity") 
+  }) 
+  output$barchartData1 <- renderDataTable({DT::datatable(df2(), 
+         rownames = FALSE, 
+         extensions = list(Responsive = TRUE, FixedHeader = TRUE) ) 
+  }) 
+  output$barchartPlot1 <- renderPlot({ggplot(df2(), aes(x=Subject_Race_Ethnicity, y=Subject_Age)) + 
+      scale_y_continuous(labels = scales::comma) + # no scientific notation   
+      coord_flip() + geom_bar(stat = "identity") + 
+      facet_wrap(~Subject_Gender, ncol = 1) + 
+      geom_hline(aes(yintercept = mean(Subject_Age), color="red")) + 
+      geom_text(aes(-1, mean(Subject_Age), label = mean(Subject_Age), vjust=-.5, hjust=-.25), color = "red") 
+}) 
+
   # # End Barchart Tab ___________________________________________________________
   # 

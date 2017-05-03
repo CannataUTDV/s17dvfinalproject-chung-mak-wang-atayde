@@ -96,11 +96,12 @@ dashboardPage(
                                       c("SQL" = "SQL",
                                         "CSV" = "CSV"), inline=T),
                          uiOutput("regions2"), # See http://shiny.rstudio.com/gallery/dynamic-ui.html
-                         actionButton(inputId = "click2",  label = "To get data, click here")
+                         actionButton(inputId = "click2",  label = "To get data, click here"),
+                         'Here is data for the "Barchart with Table Calculation" tab', 
+                         hr(), 
+                         DT::dataTableOutput("barchartData1")
                 ),
-                tabPanel("Barchart with Table Calculation", "Black = Sum of Sales per Region, Red = Average Sum of Sales per Category, and  Blue = (Sum of Sales per Region - Average Sum of Sales per Category)", plotOutput("barchartPlot1", height=1500)),
-                tabPanel("High Discount Orders", leafletOutput("barchartMap1"), height=900 ),
-                tabPanel("High Sales Customers", plotlyOutput("barchartPlot2", height=700) )
+                tabPanel("Barchart", plotOutput("barchartPlot1", height=1500))
               )
       )
       # End Barchart tab content.
