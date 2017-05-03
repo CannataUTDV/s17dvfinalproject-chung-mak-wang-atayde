@@ -195,6 +195,8 @@ shinyServer(function(input, output) {
   
   # These widgets are for the Crosstabs tab.
   online1 = reactive({input$rb1})
+  KPI_Low = reactive({input$KPI1})     
+  KPI_Medium = reactive({input$KPI2})
   
   # These widgets are for the Barcharts tab.
   online2 = reactive({input$rb2})
@@ -319,14 +321,24 @@ shinyServer(function(input, output) {
       query(
         data.world(propsfile = "www/.data.world"),
         dataset="ryanmak/s-17-dv-final-project", type="sql",
-        query="select Subject_Weapon, Premise_Category, Date,
-        sum(Number_of_Hits) as sumHits, 
-        sum(Number_of_Officers_When_Shots_Fired) as sumOfficers
+        query="select OIS_Dataset_Incidents.Subject_Weapon, 
+        OIS_Dataset_Incidents.Premise_Category,
+        sum(OIS_Dataset_Incidents.Number_of_Hits) as sumHits, 
+        sum(OIS_Dataset_Officers.Number_of_Shots_Fired_by_Officer) as sumShots,
+
+        case 
+        when sum(OIS_Dataset_Incidents.Number_of_Hits)/sum(OIS_Dataset_Officers.Number_of_Shots_Fired_by_Officer) < ? then '03 Low'
+        when sum(OIS_Dataset_Incidents.Number_of_Hits)/sum(OIS_Dataset_Officers.Number_of_Shots_Fired_by_Officer) < ? then '02 Medium'
+        else '01 High'
+
+        end as kpi
         
         FROM OIS_Dataset_Incidents
+        LEFT JOIN OIS_Dataset_Officers ON OIS_Dataset_Incidents.Case_Number=OIS_Dataset_Officers.Case_Number
         
-        group by Premise_Category, Date
-        order by Premise_Category, Date"
+        group by Premise_Category, Subject_Weapon
+        order by Premise_Category, Subject_Weapon",
+        queryParameters = list(KPI_Low(), KPI_Medium())
       ) # %>% View()
     }
   })
@@ -338,8 +350,8 @@ shinyServer(function(input, output) {
   output$plot1 <- renderPlot({ggplot(dfct1()) +
       theme(axis.text.x=element_text(angle=90, size=16, vjust=0.5)) +
       theme(axis.text.y=element_text(size=16, hjust=0.5)) +
-      geom_text(aes(x=Premise_Category, y=Date, label=sumOfficers), size=6) +
-      geom_tile(aes(x=Premise_Category, y=Date, fill=sumHits), alpha=0.50)
+      geom_text(aes(x=Premise_Category, y=Subject_Weapon, label=sumShots), size=6) +
+      geom_tile(aes(x=Premise_Category, y=Subject_Weapon, fill=kpi), alpha=0.50)
     
   })
 })
