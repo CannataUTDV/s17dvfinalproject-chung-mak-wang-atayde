@@ -143,12 +143,25 @@ shinyServer(function(input, output) {
                                                         rownames = FALSE,
                                                         extensions = list(Responsive = TRUE, FixedHeader = TRUE) )
   })
-  
-  output$scatterPlot1 <- renderPlotly({p <- ggplot(dfsc1()) +
-    theme(axis.text.x=element_text(size=16, vjust=0.5)) +
-    theme(axis.text.y=element_text(size=16, hjust=0.5)) +
-    geom_point(aes(x=year, y=shots, color=hits), size=5) +
-    geom_abline(aes(intercept=-6452.94, slope=3.22424), color = 'black')
+  ggplotRegression <- function (fit) {
+    
+    #require(ggplot2)
+    
+    ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) + 
+      #geom_point(size=5) +
+      stat_smooth(method = "lm", col = "black") +
+      labs(title = paste("Adj R2 = ",signif(summary(fit)$adj.r.squared, 5),
+                         "Intercept =",signif(fit$coef[[1]],5 ),
+                         " Slope =",signif(fit$coef[[2]], 5),
+                         " P =",signif(summary(fit)$coef[2,4], 5)))
+  }
+  output$scatterPlot1 <- renderPlotly({p <- ggplotRegression(lm(shots ~ year, data = dfsc1())) + geom_point(data = dfsc1(), aes(x=year, y=shots, color=hits), size = 5)
+    #ggplot(dfsc1(), aes(x=year, y=shots, color=hits)) +
+    #theme(axis.text.x=element_text(size=16, vjust=0.5)) +
+    #theme(axis.text.y=element_text(size=16, hjust=0.5)) +
+    #geom_point(size=5) +
+    #stat_smooth(method = "lm", col = "black")
+    #geom_abline(aes(intercept=-6452.94, slope=3.22424), color = 'black')
   ggplotly(p)
   })
   

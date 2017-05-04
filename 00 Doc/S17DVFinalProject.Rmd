@@ -83,7 +83,7 @@ This is a box plot that displays the ages of subjects in officer involved shooti
 
 This histogram displays the count of bullets shot by police officers and the frequency/count as well. This histogram shows that most shootings involve low number of bullets. Aditionally, this histogram shows the race of the subjects involved in the shootings which allows us to discern valuable information about race relations and police. <b>FROM A RACIAL PERSPECTIVE, ASIANS ARE THE LEAST LIKELY TO BE INVOLVED IN SHOOTINGS, FOLLOWED BY HISPANICS, BLACKS, THEN WHITES. THIS DOES NOT ACCOUNT FOR POPULATION SIZES.</b>
 
-##*Number of Shots fired per Year*
+##*Number of Shots Fired per Year*
 
 <center>![Shiny Scatterplot](../02 Shiny/Scatterplot.png)</center>
 
@@ -116,7 +116,7 @@ This is a box plot that displays the ages of subjects in officer involved shooti
 
 This histogram displays the count of bullets shot by police officers and the frequency/count as well. This histogram shows that most shootings involve low number of bullets. Aditionally, this histogram shows the race of the subjects involved in the shootings which allows us to discern valuable information about race relations and police. <b>FROM A RACIAL PERSPECTIVE, ASIANS ARE THE LEAST LIKELY TO BE INVOLVED IN SHOOTINGS, FOLLOWED BY HISPANICS, BLACKS, THEN WHITES. THIS DOES NOT ACCOUNT FOR POPULATION SIZES.</b> Similar to the histogram from the Shiny image.
 
-##*Number of Shots fired per Year*
+##*Number of Shots Fired per Year*
 
 <center>![Tableau Scatterplot](../03 Visualization/Scatter Plot.png)</center>
 
