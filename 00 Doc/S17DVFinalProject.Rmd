@@ -11,7 +11,7 @@ authors: Christian Atayde, Jennifer Chung, Ryan Mak, Vivian Wang
 <center>![Police](police.jpg)</center>
 
 #**Introduction**
-For this project, we will be using three different data sets. The csvs that we will be using are "OIS_Dataset_Incidents.csv", "OIS_Dataset_Officers", and "OIS_Dataset_Subjects.csv". These datasets involve cases with incidents, police officers, and subjects within Austin, TX. 
+For this project, we will be using three different data sets. The csvs that we will be using are "OIS_Dataset_Incidents.csv", "OIS_Dataset_Officers", and "OIS_Dataset_Subjects.csv". These datasets involve cases with incidents, police officers, and subjects within Austin, TX. We also joined the datasets with the Census Data called "Austin_Race", where we will be comparing the races with the OIS_Dataset. 
 The first dataset is "OIS_Dataset_Incidents.csv". Mainly describes when, where, and how the incident occured. 
 The second dataset is "OIS_Dataset_Officers". Here describes who the officers were during those incidents, which includes their age, gender, etc.
 The third dataset is "OIS_Dataset_Subjects.csv". This describes the subjects who were involved in the incidents, including their race/ethnicity, age, etc.
@@ -19,7 +19,7 @@ The third dataset is "OIS_Dataset_Subjects.csv". This describes the subjects who
 <b>To download the data needed for this project:</b>
 
 1. Click or copy/paste this link to your web browser https://data.world/ryanmak/s-17-dv-final-project
-2. Download the files "OIS_Dataset_Incidents.csv", "OIS_Dataset_Officers", and "OIS_Dataset_Subjects.csv".
+2. Download the files "OIS_Dataset_Incidents.csv", "OIS_Dataset_Officers", "OIS_Dataset_Subjects.csv", and "Austin_Race".
 
 
 #**R Configuration**
@@ -33,22 +33,11 @@ sessionInfo(package=NULL)
 
 Here we have the ETL code to clean our datasets. These datasets have already been cleaned.
 
-##*OIS_Dataset_Incidents*
-
 ```{r}
 source("../01 Data/ETL.OIS_Dataset_Incidents.R")
-```
-
-##*OIS_Dataset_Officers*
-
-```{r}
 source("../01 Data/ETL.OIS_Dataset_Officers.R")
-```
-
-##*OIS_Dataset_Subjects*
-
-```{r}
 source("../01 Data/ETL.OIS_Dataset_Subjects.R")
+source("../01 Data/ETL.Austin_Race.R")
 ```
 
 #**Shiny Visualizations**
