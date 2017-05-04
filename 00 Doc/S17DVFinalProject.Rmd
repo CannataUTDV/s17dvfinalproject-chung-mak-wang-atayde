@@ -1,5 +1,5 @@
 ---
-title: "S17 DV Final Project"
+title: "Police Officer Shooting Cases in Austin"
 output:
   html_document:
     toc: yes
@@ -51,7 +51,7 @@ source("../01 Data/ETL.OIS_Dataset_Officers.R")
 source("../01 Data/ETL.OIS_Dataset_Subjects.R")
 ```
 
-#**Shiny**
+#**Shiny Visualizations**
 
 <b>This is the link to the Shiny Apps that was published for our project:</b>
 https://jenniferchung.shinyapps.io/finalproject/
@@ -71,64 +71,64 @@ source("../02 Shiny/server.R")
 source("../02 Shiny/ui.R")
 ```
 
-##*Shiny Box Plot*
+##*Type of Case Call Versus Subject Age per Day of Week*
 
 <center>![Shiny Boxplot](../02 Shiny/Boxplot.png)</center>
 
 This is a box plot that displays the ages of subjects in officer involved shootings. This is separated by the crime that the police were alerted for initially. The color shows the date in which the shootings happened. <b>THE MOST COMMON CALL THAT LEADS TO SHOOTINGS IS DISTURBANCES. ADITIONALLY, CERTAIN CRIMES ARE MORE COMMON ON THE WEEKENDS SUCH AS BURGLARY.</b>
 
-##*Shiny Histogram*
+##*Number of Shots Fired by Police Force per Race*
 
 <center>![Shiny Histogram](../02 Shiny/Histogram.png)</center>
 
 This histogram displays the count of bullets shot by police officers and the frequency/count as well. This histogram shows that most shootings involve low number of bullets. Aditionally, this histogram shows the race of the subjects involved in the shootings which allows us to discern valuable information about race relations and police. <b>FROM A RACIAL PERSPECTIVE, ASIANS ARE THE LEAST LIKELY TO BE INVOLVED IN SHOOTINGS, FOLLOWED BY HISPANICS, BLACKS, THEN WHITES. THIS DOES NOT ACCOUNT FOR POPULATION SIZES.</b>
 
-##*Shiny Scatterplot*
+##*Number of Shots fired per Year*
 
 <center>![Shiny Scatterplot](../02 Shiny/Scatterplot.png)</center>
 
 This scatterplot shows the gradual trend with the increase of shots fired in the Austin area over time. Although this is not a strong correlation, the trend indicates a worrying trend with increases in shooting frequency as well as injuries from shootings.
 
-##*Shiny Crosstab*
+##*Accuracy of Police Officer Shots based of Subject Weapon and Location*
 
 <center>![Shiny Crosstab](../02 Shiny/Crosstab.png)</center>
 
 This crosstab shows the accuracy of police officers in the different scenarios with the weapon of the subject and the location of the shooting. The kpi indicates the hit rate of the officers over the total number of bullets shot. <b>OFFICERS TEND TO BE LESS ACCURATE IN AREAS THAT WOULD INVOLVE INNOCENT BYSTANDERS SUCH AS PARKING LOTS. THEY ARE MUCH MORE ACCURATE IF THEY ARE IN A RESIDENCE OR BACKYARD. THEY ARE ALSO MORE ACCURATE IF THE SUBJECT IS EQUIPPED WITH A RIFLE, POSSIBLY INDICATING THE USE OF SPECIAL FORCES OR ADVANCED POLICE TEAMS.</b>
 
-##*Shiny Barchart*
+##*Amount of Police Officer Shots and Subject Casualty based of Subject Drug Influence*
 
 <center>![Shiny Barchart](../02 Shiny/Barchart.png)</center>
 
 This barchart indicates the effects of drugs and alcohol on officer involved shootings. Officers shot more often at people under the influence and were more likely to seriously harm or kill these people. <b>WHILE IT APPEARS THAT PEOPLE NOT UNDER THE INFLUENCE ARE SHOT AT MORE, THE COMBINATION OF THE DRUG AND ALCOHOL COLUMNS INDICATE THAT THOSE UNDER THE INFLUENCE ARE IN MUCH GREATER DANGER. IT IS MUCH MORE COMMON FOR THOSE NOT UNDER THE INFLUENCE TO ESCAPE WITH NO INJURY OR MINIMAL INJURIES.</b>
 
 
-#**The Data**
+#**Tableau Visualizations**
 
-##*Tableau Box Plot*
+##*Type of Case Call Versus Subject Age per Day of Week*
 
 <center>![Tableau Box Plot](../03 Visualization/Box Plot.png)</center>
 
 This is a box plot that displays the ages of subjects in officer involved shootings. This is separated by the crime that the police were alerted for initially. THe color shows the date in which the shootings happened. <b>THE MOST COMMON CALL THAT LEADS TO SHOOTINGS IS DISTURBANCES. ADITIONALLY, CERTAIN CRIMES ARE MORE COMMON ON THE WEEKENDS SUCH AS BURGLARY.</b> Similar to the box plot from the Shiny image.
 
-##*Tableau Histogram*
+##*Number of Shots Fired by Police Force per Race*
 
 <center>![Tableau Histogram](../03 Visualization/Histogram.png)</center>
 
 This histogram displays the count of bullets shot by police officers and the frequency/count as well. This histogram shows that most shootings involve low number of bullets. Aditionally, this histogram shows the race of the subjects involved in the shootings which allows us to discern valuable information about race relations and police. <b>FROM A RACIAL PERSPECTIVE, ASIANS ARE THE LEAST LIKELY TO BE INVOLVED IN SHOOTINGS, FOLLOWED BY HISPANICS, BLACKS, THEN WHITES. THIS DOES NOT ACCOUNT FOR POPULATION SIZES.</b> Similar to the histogram from the Shiny image.
 
-##*Tableau Scatterplot*
+##*Number of Shots fired per Year*
 
 <center>![Tableau Scatterplot](../03 Visualization/Scatter Plot.png)</center>
 
 This scatterplot shows the gradual trend with the increase of shots fired in the Austin area over time. Although this is not a strong correlation, the trend indicates a worrying trend with increases in shooting frequency as well as injuries from shootings. Similar to the scatterplot from the Shiny image.
 
-##*Tableau Crosstab*
+##*Accuracy of Police Officer Shots based of Subject Weapon and Location*
 
 <center>![Tableau Crosstab](../03 Visualization/Crosstab.png)</center>
 
 This crosstab shows the accuracy of police officers in the different scenarios with the weapon of the subject and the location of the shooting. The kpi indicates the hit rate of the officers over the total number of bullets shot. <b>OFFICERS TEND TO BE LESS ACCURATE IN AREAS THAT WOULD INVOLVE INNOCENT BYSTANDERS SUCH AS PARKING LOTS. THEY ARE MUCH MORE ACCURATE IF THEY ARE IN A RESIDENCE OR BACKYARD. THEY ARE ALSO MORE ACCURATE IF THE SUBJECT IS EQUIPPED WITH A RIFLE, POSSIBLY INDICATING THE USE OF SPECIAL FORCES OR ADVANCED POLICE TEAMS.</b> Similar to the crosstab from the Shiny image.
 
-##*Tableau Barchart*
+##*Amount of Police Officer Shots and Subject Casualty based of Subject Drug Influence*
 
 <center>![Tableau Barchart](../03 Visualization/Barchart.png)</center>
 
