@@ -19,7 +19,7 @@ The third dataset is "OIS_Dataset_Subjects.csv". This describes the subjects who
 <b>To download the data needed for this project:</b>
 
 1. Click or copy/paste this link to your web browser https://data.world/ryanmak/s-17-dv-final-project
-2. Download the files "OIS_Dataset_Incidents.csv", "OIS_Dataset_Officers", "OIS_Dataset_Subjects.csv", and "Austin_Race".
+2. Download the files "OIS_Dataset_Incidents.csv", "OIS_Dataset_Officers", and  "OIS_Dataset_Subjects.csv".
 
 
 #**R Configuration**
@@ -37,7 +37,6 @@ Here we have the ETL code to clean our datasets. These datasets have already bee
 source("../01 Data/ETL.OIS_Dataset_Incidents.R")
 source("../01 Data/ETL.OIS_Dataset_Officers.R")
 source("../01 Data/ETL.OIS_Dataset_Subjects.R")
-source("../01 Data/ETL.Austin_Race.R")
 ```
 
 #**Shiny Visualizations**
